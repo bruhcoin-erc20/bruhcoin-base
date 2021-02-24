@@ -4,8 +4,10 @@ pragma solidity >=0.7.0 <0.8.0;
 
 /*
 BruhCoin (C) BruhCoin 2021.
-http://bruhco.in/
+https://bruhco.in/
 */
+
+import './libs/SafeMath.sol';
 
 contract BruhCoin {
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
@@ -96,18 +98,5 @@ contract BruhCoin {
     */
     function bruh() public view returns (uint) {
         return version_;
-    }
-}
-
-library SafeMath { 
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        assert(b <= a);
-        return a - b;
-    }
-    
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        assert(c >= a);
-        return c;
     }
 }
