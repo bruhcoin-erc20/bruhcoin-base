@@ -57,6 +57,7 @@ contract BruhCoin {
     */
     function transfer(address receiver, uint numTokens) public returns (bool) {
         require(numTokens <= balances[msg.sender]);
+        require(receiver != 0x0000000000000000000000000000000000000000);
         balances[msg.sender] = balances[msg.sender].sub(numTokens);
         balances[receiver] = balances[receiver].add(numTokens);
         emit Transfer(msg.sender, receiver, numTokens);
@@ -67,6 +68,7 @@ contract BruhCoin {
     Approve a transfer.
     */
     function approve(address delegate, uint numTokens) public returns (bool) {
+		require(delegate != 0x0000000000000000000000000000000000000000);
         allowed[msg.sender][delegate] = numTokens;
         Approval(msg.sender, delegate, numTokens);
         return true;
@@ -83,6 +85,8 @@ contract BruhCoin {
     Transfer some Bruh.
     */
     function transferFrom(address owner, address buyer, uint numTokens) public returns (bool) {
+        require(buyer != 0x0000000000000000000000000000000000000000);
+        require(owner != 0x0000000000000000000000000000000000000000);
         require(numTokens <= balances[owner]);    
         require(numTokens <= allowed[owner][msg.sender]);
     
